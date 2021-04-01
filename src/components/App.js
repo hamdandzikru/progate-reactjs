@@ -6,15 +6,20 @@ class App extends React.Component {
     this.state = {name: 'Ninja Ken'};
   }
   
+  // Nyatakan method handleClick 
+  handleClick(name) {
+    this.setState({name: name});
+  }
+  
   render() {
     return (
     	<div>
-    	  <h1>Halo, {this.state.name}!</h1>
-    	  {/* Ubah state untuk event onClick */}
-        <button onClick={() => {this.setState({name: 'Guru Domba'})}}>Guru Domba</button>
+    	  <h1>Hello, {this.state.name}!</h1>
+    	  {/* Gantikan event onClick supaya dapat memanggil method handleClick */}
+        <button onClick={() => {this.handleClick('Guru Domba')}}>Guru Domba</button>
         
-    	  {/* Ubah state untuk event onClick */}
-        <button onClick={() => {this.setState({name: 'Ninja Ken'})}}>Ninja Ken</button>
+    	  {/* Gantikan event onClick supaya dapat memanggil method handleClick */}
+        <button onClick={() => {this.handleClick('Ninja Ken')}}>Ninja Ken</button>
         
       </div>
     );
