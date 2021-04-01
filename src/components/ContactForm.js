@@ -1,22 +1,45 @@
 import React from 'react';
 
 class ContactForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      /* Spesifikasikan state isSubmitted */
+      isSubmitted: false,
+    };
+  }
+
   render() {
-    return (
-      <div className='contact-form'>
+    /* Deklarasikan variable contactForm */
+    let contactForm;
+    
+    /* Buat statement if dengan isSubmitted sebagai pernyataan kondisional */
+    if (this.state.isSubmitted) {
+      contactForm = (
+        <div className='contact-submit-message'>
+          Pesan Terkirim
+        </div>
+      );
+    } else {
+      contactForm = (
         <form>
           <p>Alamat Email (wajib diisi)</p>
-          {/* Tambahkan tag input */}
           <input />
           <p>Pesan (wajib diisi)</p>
-          {/* Tambahkan tag textarea */}
           <textarea />
-          {/* Tambahkan tombol kirim */}
           <input
             type='submit'
             value='Kirim'
           />
         </form>
+      );
+    }
+    
+    return (
+      <div className='contact-form'>
+        {/* Hapus code di bawah dan tampilkan variable contactForm */}
+        {contactForm}
+        {/* Hapus sampai di sini */}
       </div>
     );
   }
