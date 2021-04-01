@@ -4,16 +4,17 @@ class ContactForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      /* Spesifikasikan state isSubmitted */
       isSubmitted: false,
+      email: '',
     };
   }
 
+  handleSubmit() {
+    this.setState({isSubmitted: true});
+  }
+
   render() {
-    /* Deklarasikan variable contactForm */
     let contactForm;
-    
-    /* Buat statement if dengan isSubmitted sebagai pernyataan kondisional */
     if (this.state.isSubmitted) {
       contactForm = (
         <div className='contact-submit-message'>
@@ -22,9 +23,13 @@ class ContactForm extends React.Component {
       );
     } else {
       contactForm = (
-        <form>
+        <form onSubmit={() => {this.handleSubmit()}}>
           <p>Alamat Email (wajib diisi)</p>
-          <input />
+          {/* Tambahkan event onChange ke tag input */}
+          <input
+            value={this.state.email}
+            onChange={(event) => {console.log(event.target.value)}}
+          />
           <p>Pesan (wajib diisi)</p>
           <textarea />
           <input
@@ -37,9 +42,7 @@ class ContactForm extends React.Component {
     
     return (
       <div className='contact-form'>
-        {/* Hapus code di bawah dan tampilkan variable contactForm */}
         {contactForm}
-        {/* Hapus sampai di sini */}
       </div>
     );
   }
