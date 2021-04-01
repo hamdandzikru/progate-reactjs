@@ -1,19 +1,18 @@
-// Import React
 import React from 'react';
 
-// Deklarasikan class Lesson
 class Lesson extends React.Component {
   render() {
     return (
       <div className='lesson-card'>
         <div className='lesson-item'>
-          <p></p>
-          <img />
+          {/* Masukan nilai milik props name  */}
+          <p>{this.props.name}</p>
+          {/* Tentukan nilai dari props image untuk atribut src */}
+          <img src={this.props.image} />
         </div>
       </div>
     );
   }
 }
 
-// Export class Lesson 
 export default Lesson;
