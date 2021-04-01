@@ -7,18 +7,28 @@ class ContactForm extends React.Component {
       isSubmitted: false,
       email: '',
       hasEmailError: false,
+      /* Tambahkan state "content" dan "hasContentError" */
+      content: '',
+      hasContentError: false,
     };
   }
 
   handleEmailChange(event) {
     const inputValue = event.target.value;
-    /* Deklarasikan constant isEmpty dan tetapkan nilainya ke hasil dari pemeriksaan input */
     const isEmpty = inputValue === '';
-    
-    /* Perbarui hasEmailError */
     this.setState({
       email: inputValue,
       hasEmailError: isEmpty,
+    });
+  }
+
+  /* Deklarasikan method handleContentChange */
+  handleContentChange(event) {
+    const inputValue = event.target.value;
+    const isEmpty = inputValue === '';
+    this.setState({
+      content: inputValue,
+      hasContentError: isEmpty,
     });
   }
 
@@ -35,7 +45,19 @@ class ContactForm extends React.Component {
         </p>
       );
     }
-
+    
+    /* Deklarasikan variable contentErrorText */
+    let contentErrorText;
+    
+    /* Buat statement if dengan hasContentError sebagai kondisi */
+    if (this.state.hasContentError) {
+      contentErrorText = (
+        <p className='contact-message-error'>
+          Masukkan pesan Anda
+        </p>
+      )
+    }
+    
     let contactForm;
     if (this.state.isSubmitted) {
       contactForm = (
@@ -45,7 +67,7 @@ class ContactForm extends React.Component {
       );
     } else {
       contactForm = (
-        <form onSubmit={() => {this.handleSubmit()}}>
+        <form onSubmit={() => {this.handleSubmit()}} >
           <p>Alamat Email (wajib diisi)</p>
           <input
             value={this.state.email}
@@ -53,7 +75,13 @@ class ContactForm extends React.Component {
           />
           {emailErrorText}
           <p>Pesan (wajib diisi)</p>
-          <textarea />
+          {/* Tambahkan nilai dan event onChange */}
+          <textarea
+            value={this.state.content}
+            onChange={(event) => {this.handleContentChange(event)}}
+          />
+          {/* Tampilkan contentErrorText */}
+          {contentErrorText}
           <input
             type='submit'
             value='Kirim'
@@ -61,7 +89,7 @@ class ContactForm extends React.Component {
         </form>
       );
     }
-
+    
     return (
       <div className='contact-form'>
         {contactForm}
