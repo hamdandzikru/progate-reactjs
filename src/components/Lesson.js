@@ -5,12 +5,14 @@ class Lesson extends React.Component {
     super(props);
     this.state = {isModalOpen: false};
   }
-
+  
+  // Deklarasikan method handleClickLesson 
+  handleClickLesson(){
+    this.setState({isModalOpen: true});
+  }
+  
   render() {
-    // Deklarasikan variable modal
     let modal;
-    
-    // Siapkan pernyataan if
     if (this.state.isModalOpen) {
       modal = (
         <div className='modal'>
@@ -27,17 +29,16 @@ class Lesson extends React.Component {
         </div>
       );
     }
-    
     return (
       <div className='lesson-card'>
-        <div className='lesson-item'>
+        {/* Tambahkan event onClick */}
+        <div
+          className='lesson-item'
+          onClick={() => {this.handleClickLesson()}}
+        >
           <p>{this.props.name}</p>
           <img src={this.props.image} />
         </div>
-        {/* Hapuskan code dibawah */}
-        {/* Sampai disini */}
-        
-        {/* Tampilkan variable "modal" */}
         {modal}
       </div>
     );
