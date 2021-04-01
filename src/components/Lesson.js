@@ -5,12 +5,16 @@ class Lesson extends React.Component {
     super(props);
     this.state = {isModalOpen: false};
   }
-  
-  // Deklarasikan method handleClickLesson 
-  handleClickLesson(){
+
+  handleClickLesson() {
     this.setState({isModalOpen: true});
   }
   
+  // Deklarasikan method handleClickClose 
+  handleClickClose() {
+    this.setState({isModalOpen: false});
+  }
+
   render() {
     let modal;
     if (this.state.isModalOpen) {
@@ -22,16 +26,20 @@ class Lesson extends React.Component {
               <h2>{this.props.name}</h2>
               <p>{this.props.introduction}</p>
             </div>
-            <button className='modal-close-btn'>
+            {/* Tambahkan event onClick */}
+            <button
+              className='modal-close-btn'
+              onClick={() => {this.handleClickClose()}}
+            >
               Tutup
             </button>
           </div>
         </div>
       );
     }
+
     return (
       <div className='lesson-card'>
-        {/* Tambahkan event onClick */}
         <div
           className='lesson-item'
           onClick={() => {this.handleClickLesson()}}
